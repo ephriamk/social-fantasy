@@ -1,5 +1,7 @@
 import Image from "next/image";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
+import TiltCard from "@/components/TiltCard";
+import HeroScene3D from "@/components/HeroScene3D";
 
 function GradientText({
   children,
@@ -53,84 +55,66 @@ function HeroSection() {
   return (
     <section className="relative overflow-hidden">
       <div
-        className="absolute inset-0 h-[600px] sm:h-[700px] lg:h-[840px]"
+        className="absolute inset-0 h-[600px] sm:h-[700px] lg:h-[clamp(840px,70vw,1120px)]"
         style={{
           background:
             "radial-gradient(ellipse at center, rgba(255,255,255,1) 0%, rgba(233,234,249,1) 100%)",
         }}
       />
       {/* Pulsing glow blob */}
-      <div className="absolute left-1/2 -translate-x-1/2 top-[180px] sm:top-[220px] lg:top-[253px] w-[400px] sm:w-[500px] lg:w-[635px] h-[300px] sm:h-[380px] lg:h-[469px] bg-brand-violet rounded-full blur-[50px] animate-pulse-glow" />
+      <div className="absolute left-1/2 -translate-x-1/2 top-[180px] sm:top-[220px] lg:top-[253px] w-[400px] sm:w-[500px] lg:w-[50vw] lg:max-w-[800px] h-[300px] sm:h-[380px] lg:h-[37vw] lg:max-h-[600px] bg-brand-violet rounded-full blur-[50px] animate-pulse-glow" />
 
       <div className="relative pt-[100px] sm:pt-[110px] lg:pt-[120px]">
-        {/* Mobile: single center phone with float */}
+        {/* Mobile: single center phone with 3D tilt */}
         <div className="sm:hidden flex justify-center px-6">
           <div className="animate-fade-in-up animate-float">
-            <Image
-              src="/images/onboarding1.png"
-              alt="Social Fantasy app"
-              width={220}
-              height={476}
-              className="rounded-[20px] shadow-2xl"
-              priority
-            />
+            <TiltCard maxTilt={10} className="rounded-[20px]">
+              <Image
+                src="/images/onboarding1.png"
+                alt="Social Fantasy app"
+                width={220}
+                height={476}
+                className="rounded-[20px] shadow-2xl"
+                priority
+              />
+            </TiltCard>
           </div>
         </div>
 
-        {/* Tablet: 3 phones with staggered entrance */}
+        {/* Tablet: 3 phones with 3D tilt */}
         <div className="hidden sm:block lg:hidden">
           <div className="relative left-1/2 -translate-x-1/2 w-[768px] h-[440px]">
             <div className="absolute left-[60px] top-[45px] opacity-70 animate-fade-in-up delay-200">
               <div className="animate-float-slow">
-                <Image src="/images/onboarding2.png" alt="Leagues screen" width={195} height={422} className="rounded-[20px] shadow-2xl" />
+                <TiltCard maxTilt={8} className="rounded-[20px]">
+                  <Image src="/images/onboarding2.png" alt="Leagues screen" width={195} height={422} className="rounded-[20px] shadow-2xl" />
+                </TiltCard>
               </div>
             </div>
             <div className="absolute left-[calc(50%-110px)] top-0 z-10 animate-fade-in-up">
               <div className="animate-float">
-                <Image src="/images/onboarding1.png" alt="Social Fantasy app" width={220} height={476} className="rounded-[20px] shadow-2xl" priority />
+                <TiltCard maxTilt={10} className="rounded-[20px]">
+                  <Image src="/images/onboarding1.png" alt="Social Fantasy app" width={220} height={476} className="rounded-[20px] shadow-2xl" priority />
+                </TiltCard>
               </div>
             </div>
             <div className="absolute right-[60px] top-[45px] opacity-70 animate-fade-in-up delay-400">
               <div className="animate-float-slow" style={{ animationDelay: "1.5s" }}>
-                <Image src="/images/onboarding4.png" alt="League detail screen" width={195} height={422} className="rounded-[20px] shadow-2xl" />
+                <TiltCard maxTilt={8} className="rounded-[20px]">
+                  <Image src="/images/onboarding4.png" alt="League detail screen" width={195} height={422} className="rounded-[20px] shadow-2xl" />
+                </TiltCard>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Desktop: all 5 phones with staggered entrance + float */}
+        {/* Desktop: all 5 phones as 3D cards in Three.js */}
         <div className="hidden lg:block">
-          <div className="relative left-1/2 -translate-x-1/2 w-[1280px] h-[650px]">
-            <div className="absolute left-[-120px] top-[130px] opacity-50 animate-fade-in-up delay-500">
-              <div className="animate-float-slow" style={{ animationDelay: "2s" }}>
-                <Image src="/images/onboarding5.png" alt="Onboarding 5" width={270} height={585} className="rounded-[24px] shadow-2xl" />
-              </div>
-            </div>
-            <div className="absolute left-[185px] top-[65px] opacity-70 animate-fade-in-up delay-200">
-              <div className="animate-float-slow" style={{ animationDelay: "0.8s" }}>
-                <Image src="/images/onboarding2.png" alt="Leagues screen" width={270} height={585} className="rounded-[24px] shadow-2xl" priority />
-              </div>
-            </div>
-            <div className="absolute left-[490px] top-0 z-10 animate-fade-in-up">
-              <div className="animate-float">
-                <Image src="/images/onboarding1.png" alt="Social Fantasy app" width={300} height={650} className="rounded-[24px] shadow-2xl" priority />
-              </div>
-            </div>
-            <div className="absolute left-[825px] top-[65px] opacity-70 animate-fade-in-up delay-300">
-              <div className="animate-float-slow" style={{ animationDelay: "1.2s" }}>
-                <Image src="/images/onboarding4.png" alt="League detail screen" width={270} height={585} className="rounded-[24px] shadow-2xl" priority />
-              </div>
-            </div>
-            <div className="absolute left-[1130px] top-[130px] opacity-50 animate-fade-in-up delay-600">
-              <div className="animate-float-slow" style={{ animationDelay: "2.5s" }}>
-                <Image src="/images/onboarding3.png" alt="Onboarding 3" width={270} height={585} className="rounded-[24px] shadow-2xl" />
-              </div>
-            </div>
-          </div>
+          <HeroScene3D />
         </div>
 
         {/* Text overlay */}
-        <div className="relative -mt-[60px] sm:-mt-[100px] lg:-mt-[180px] bg-white pt-10 sm:pt-12 lg:pt-16 pb-6 sm:pb-8 lg:pb-12 text-center z-20 px-5 sm:px-8">
+        <div className="relative -mt-[60px] sm:-mt-[100px] lg:-mt-[200px] xl:-mt-[260px] bg-white pt-10 sm:pt-12 lg:pt-16 pb-6 sm:pb-8 lg:pb-12 text-center z-20 px-5 sm:px-8">
           <h1 className="text-[28px] sm:text-[40px] md:text-[48px] lg:text-[60px] font-extrabold leading-tight animate-fade-in-up delay-100">
             <GradientText>Pick. Draft. Dominate.</GradientText>
           </h1>
@@ -210,14 +194,16 @@ function FeatureSection({
 
   const phoneContent = (
     <AnimateOnScroll animation={phoneAnimation as "reveal-left" | "reveal-right"} delay={150} className="relative shrink-0">
-      <div className="absolute -left-2 sm:-left-3 top-2 sm:top-3 w-[200px] sm:w-[230px] lg:w-[277px] h-[420px] sm:h-[485px] lg:h-[585px] bg-[#eee] rounded-[22px] sm:rounded-[26px] lg:rounded-[30px]" />
-      <Image
-        src={phoneImage}
-        alt={phoneAlt}
-        width={268}
-        height={581}
-        className="relative z-10 rounded-[18px] sm:rounded-[20px] lg:rounded-[24px] w-[192px] sm:w-[222px] lg:w-[268px] h-auto transition-transform duration-500 hover:scale-[1.02]"
-      />
+      <TiltCard maxTilt={14} scale={1.04} className="relative">
+        <div className="absolute -left-2 sm:-left-3 top-2 sm:top-3 w-[200px] sm:w-[230px] lg:w-[277px] h-[420px] sm:h-[485px] lg:h-[585px] bg-[#eee] rounded-[22px] sm:rounded-[26px] lg:rounded-[30px]" />
+        <Image
+          src={phoneImage}
+          alt={phoneAlt}
+          width={268}
+          height={581}
+          className="relative z-10 rounded-[18px] sm:rounded-[20px] lg:rounded-[24px] w-[192px] sm:w-[222px] lg:w-[268px] h-auto"
+        />
+      </TiltCard>
     </AnimateOnScroll>
   );
 
