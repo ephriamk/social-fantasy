@@ -65,45 +65,27 @@ function HeroSection() {
       <div className="absolute left-1/2 -translate-x-1/2 top-[180px] sm:top-[220px] lg:top-[253px] w-[400px] sm:w-[500px] lg:w-[50vw] lg:max-w-[800px] h-[300px] sm:h-[380px] lg:h-[37vw] lg:max-h-[600px] bg-brand-violet rounded-full blur-[50px] animate-pulse-glow" />
 
       <div className="relative pt-[100px] sm:pt-[110px] lg:pt-[120px]">
-        {/* Mobile: single center phone with 3D tilt */}
-        <div className="sm:hidden flex justify-center px-6">
-          <div className="animate-fade-in-up animate-float">
-            <TiltCard maxTilt={10} className="rounded-[20px]">
-              <Image
-                src="/images/onboarding1.png"
-                alt="Social Fantasy app"
-                width={220}
-                height={476}
-                className="rounded-[20px] shadow-2xl"
-                priority
-              />
-            </TiltCard>
+        {/* Mobile & Tablet: 3 phones with 3D tilt, scales to fit */}
+        <div className="lg:hidden flex items-end justify-center gap-[3%] px-4 sm:px-8">
+          <div className="w-[28%] sm:w-[24%] max-w-[195px] opacity-70 translate-y-[-8%] animate-fade-in-up delay-200">
+            <div className="animate-float-slow">
+              <TiltCard maxTilt={8} className="rounded-[16px] sm:rounded-[20px]">
+                <Image src="/images/onboarding2.png" alt="Leagues screen" width={195} height={422} className="w-full h-auto rounded-[16px] sm:rounded-[20px] shadow-2xl" />
+              </TiltCard>
+            </div>
           </div>
-        </div>
-
-        {/* Tablet: 3 phones with 3D tilt */}
-        <div className="hidden sm:block lg:hidden">
-          <div className="relative left-1/2 -translate-x-1/2 w-[768px] h-[440px]">
-            <div className="absolute left-[60px] top-[45px] opacity-70 animate-fade-in-up delay-200">
-              <div className="animate-float-slow">
-                <TiltCard maxTilt={8} className="rounded-[20px]">
-                  <Image src="/images/onboarding2.png" alt="Leagues screen" width={195} height={422} className="rounded-[20px] shadow-2xl" />
-                </TiltCard>
-              </div>
+          <div className="w-[32%] sm:w-[28%] max-w-[220px] z-10 animate-fade-in-up">
+            <div className="animate-float">
+              <TiltCard maxTilt={10} className="rounded-[16px] sm:rounded-[20px]">
+                <Image src="/images/onboarding1.png" alt="Social Fantasy app" width={220} height={476} className="w-full h-auto rounded-[16px] sm:rounded-[20px] shadow-2xl" priority />
+              </TiltCard>
             </div>
-            <div className="absolute left-[calc(50%-110px)] top-0 z-10 animate-fade-in-up">
-              <div className="animate-float">
-                <TiltCard maxTilt={10} className="rounded-[20px]">
-                  <Image src="/images/onboarding1.png" alt="Social Fantasy app" width={220} height={476} className="rounded-[20px] shadow-2xl" priority />
-                </TiltCard>
-              </div>
-            </div>
-            <div className="absolute right-[60px] top-[45px] opacity-70 animate-fade-in-up delay-400">
-              <div className="animate-float-slow" style={{ animationDelay: "1.5s" }}>
-                <TiltCard maxTilt={8} className="rounded-[20px]">
-                  <Image src="/images/onboarding4.png" alt="League detail screen" width={195} height={422} className="rounded-[20px] shadow-2xl" />
-                </TiltCard>
-              </div>
+          </div>
+          <div className="w-[28%] sm:w-[24%] max-w-[195px] opacity-70 translate-y-[-8%] animate-fade-in-up delay-400">
+            <div className="animate-float-slow" style={{ animationDelay: "1.5s" }}>
+              <TiltCard maxTilt={8} className="rounded-[16px] sm:rounded-[20px]">
+                <Image src="/images/onboarding4.png" alt="League detail screen" width={195} height={422} className="w-full h-auto rounded-[16px] sm:rounded-[20px] shadow-2xl" />
+              </TiltCard>
             </div>
           </div>
         </div>
